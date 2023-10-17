@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>3DMODELIST.viewer</title>
+    <style>
+        body {
+            margin: 0;
+            width: 1920px; /* Set the width to 1920 pixels for desktop resolution */
+            height: 1080px; /* Set the height to 1080 pixels for desktop resolution */
+            background: url('') no-repeat center center fixed; /* Initially, no background image */
+            background-size: cover;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .author {
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .owner-link {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>3DMODELIST.viewer</h1>
+    <p class="author">Author: JERICO ALVIN ESPANTO (tec project)</p>
+    <label for="embedInput">Enter Embed Code:</label>
+    <textarea id="embedInput" placeholder="Paste your embed code here"></textarea>
+    <button id="loadButton">Load Embed Code</button>
+    <label for="imageInput">Choose Background Image:</label>
+    <input type="file" accept="image/*" id="imageInput">
+    <iframe id="viewer" src="" frameborder="0"></iframe>
+    <p>Powered by: SketchUp 3D Warehouse</p>
+    <div class="owner-link">
+        <a href="https://www.facebook.com/jericoalvin18" target="_blank">Owner's Facebook</a>
+    </div>
+    <script>
+        const embedInput = document.getElementById('embedInput');
+        const loadButton = document.getElementById('loadButton');
+        const viewer = document.getElementById('viewer');
+        const imageInput = document.getElementById('imageInput');
+        const body = document.body;
+
+        loadButton.addEventListener('click', () => {
+            const embedCode = embedInput.value.trim();
+            if (embedCode !== '') {
+                viewer.srcdoc = embedCode;
+            }
+        });
+
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                body.style.background = url('${imageUrl}') no-repeat center center fixed;
+                body.style.backgroundSize = 'cover';
+            }
+        });
+    </script>
+</body>
+</html>
+<iframe src="https://clara.io/embed/d49ee603-8e6c-4720-bd20-9e3d7b13978a?renderer=webgl" width="800" height="600" allowfullscreen></iframe>
